@@ -3,6 +3,10 @@
 
 <h3>Personas</h3>
 
+<div>
+    <a class="btn btn-success" href="crear-persona">Nueva Persona</a>
+</div>
+
 @if (personas == null)
 {
     <text>Cargando...</text>
@@ -11,7 +15,7 @@ else if (personas.Length == 0)
 {
     <text>No hay personas en la base de datos</text>
 }
-else 
+else
 {
     <table class="table">
         <thead>
@@ -48,5 +52,10 @@ else
     async Task CargarPersonas()
     {
         personas = await Http.GetJsonAsync<Persona[]>("personas");
+        //personas = new Persona[]
+        //{
+        //    new Persona(){ Id=1, Nombre="FRANZ" },
+        //    new Persona(){ Id=2, Nombre="JUAN" }
+        //};
     }
 }

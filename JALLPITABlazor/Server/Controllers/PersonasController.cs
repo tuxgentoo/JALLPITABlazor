@@ -24,5 +24,19 @@ namespace JALLPITABlazor.Server.Controllers
         {
             return await context.Personas.ToListAsync();
         }
+
+        [HttpGet("{id}", Name = "obtenerPersona")]
+        public async Task<ActionResult<Persona>> Get(int id)
+        {
+            return await context.Personas.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post(Persona persona)
+        {
+            context.Add(persona);
+            await context.SaveChangesAsync();
+            return new CreatedAtRouteResult("obtenerPersona", new { id = persona.Id, }, persona);
+        }
     }
 }
